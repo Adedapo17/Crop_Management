@@ -15,7 +15,7 @@ const Predict = () => {
     const endDate = e.target.end_date.value;
     const crop = e.target.crops.value;
 
-    const response = await fetch("https://https://flask-server-sjfm.onrender.com/predict_gdd", {
+    const response = await fetch("https://flask-server-sjfm.onrender.com/predict_gdd", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
