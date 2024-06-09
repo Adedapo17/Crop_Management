@@ -11,7 +11,8 @@ const handler = NextAuth({
             clientId:process.env.GOOGLE_ID,
             clientSecret:process.env.GOOGLE_SECRET
         }),secret
-    ]
+    ],
+     secret: process.env.NEXTAUTH_SECRET,
 })
 
 export {handler as GET, handler as POST}
