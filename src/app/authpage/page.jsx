@@ -13,7 +13,7 @@ const Authpage = () => {
   const handleClick = () => {
     if (typeof window !== 'undefined') {
       signIn("google");
-      router.push("/home")
+      router.push("/predict")
 
     }
   }
