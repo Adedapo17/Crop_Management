@@ -1,0 +1,25 @@
+.searchfield {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    font-size: 14px;
+    gap: 15px;
+    padding: 10px;
+    background: none;
+  }
+
+  .input {
+    outline: none;
+    background: none;
+  }
+
+  .profilepic {
+    border-radius: 50%;
+  }
