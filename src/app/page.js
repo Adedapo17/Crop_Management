@@ -2,7 +2,7 @@
 
 import Authpage from "./authpage/page";
 import { useSession } from "next-auth/react";
-import Predict from "./predict/page";
+import Predict from "./home/page";
 
 export default function Home() {
   
