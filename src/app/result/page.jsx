@@ -31,7 +31,7 @@ const Result = () => {
 
   return (
     <div className={styles.container}>
-      <Topbar />
+      <Topbar showSearch={false} />
       <h1 className={styles.header}>Result</h1>
       <table className={styles.table}>
         <thead className={styles.thead}>

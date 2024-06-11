@@ -35,7 +35,7 @@ const Predict = () => {
 
   return (
     <div className={styles.container}>
-      <Topbar />
+      <Topbar showSearch={true} />
       <h2 className={styles.title}>Growing Degree Days Calculator</h2>
 
       <form className={styles.form} onSubmit={handleSubmit}>
