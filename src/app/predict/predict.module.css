@@ -1,111 +1,106 @@
 .container {
-    background-image: url("../../../public/farmland1.jpg");
-    padding: 24px 32px;
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-  }
-  
+  background-image: url("../../../public/farmland1.jpg");
+  padding: 24px 32px;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.title {
+  color: #018241;
+  font-size: 32px;
+  font-weight: bold;
+  width: 35%;
+  margin: 25px 0;
+}
+.subtitle {
+  padding-left: 300px;
+  padding-top: 50px;
+  font-size: 24px;
+  color: #fff;
+}
+.desc {
+  color: #fff;
+  padding-left: 300px;
+  padding-top: 20px;
+  font-size: 16px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+}
+
+.select {
+  width: 500px;
+  height: 36px;
+  border-radius: 7px;
+  padding: 0 30px;
+}
+.dateContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.date {
+  width: 500px;
+  height: 36px;
+  border-radius: 7px;
+  padding: 0 30px;
+}
+
+.label {
+  padding: 25px 0;
+  color: #fff;
+  font-weight: bold;
+}
+
+.submit {
+  width: 400px;
+  border-radius: 10px;
+  padding: 10px 30px;
+  background-color: #018241;
+  color: #fff;
+  font-size: 18px;
+  margin-top: 25px;
+}
+
+@media (max-width: 768px) {
   .title {
-    color: #018241;
     font-size: 32px;
     font-weight: bold;
-    width: 35%;
+    width: 50%;
     margin: 25px 0;
   }
-  .subtitle {
-    padding-left: 300px;
-    padding-top: 50px;
+
+  .submit {
+    width: 300px;
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
     font-size: 24px;
-    color: #fff;
+    width: 100%;
+    margin: 45px 0px 15px 0px;
+    text-align: center;
   }
-  .desc {
-    color: #fff;
-    padding-left: 300px;
-    padding-top: 20px;
-    font-size: 16px;
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 25px;
-  }
-  
+
   .select {
-    width: 500px;
-    height: 36px;
-    border-radius: 7px;
-    padding: 0 30px;
-  }
-  .dateContainer{
-    display: flex;
-    flex-direction: column;
-    margin-top: 15px;
-  }
-  
-  .date{
-      width: 500px;
-      height: 36px;
-      border-radius: 7px;
-      padding: 0 30px;
-  
-  }
-  
-  .label{
-    padding: 25px 0;
-    color: #fff;
-    font-weight: bold;
-  }
-  
-  .submit{
-      width: 400px;
-      border-radius: 10px;
-      padding: 10px 30px;
-      background-color: #018241;
-      color: #fff;
-      font-size: 18px;
-      margin-top: 25px;
+    width: 300px;
   }
 
-
-  @media (max-width: 768px) {
- 
-    .title {
-      font-size: 32px;
-      font-weight: bold;
-      width: 50%;
-      margin:25px 0;
-    }
-
-    .submit{
-      width: 300px;
-      margin-top: 30px;  
+  .date {
+    width: 300px;
   }
 
- 
-  }
-
-  @media (max-width: 480px) {
-    .title {
-      font-size: 24px;
-      width: 100%;
-      margin:45px 0px 15px 0px;
-      text-align: center;
-    }
-
-    .select {
-      width: 320px;
-    }
-
-    .date{
-      width: 320px;
-  }
-
-  .submit{
+  .submit {
     width: 250px;
     margin-top: 30px;
   }
-  }
+}

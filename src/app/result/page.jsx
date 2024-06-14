@@ -36,7 +36,6 @@ const Result = () => {
       <table className={styles.table}>
         <thead className={styles.thead}>
           <tr>
-          <th className={styles.th}></th>
             <th className={styles.th}>Crop Name</th>
             <th className={styles.th}>Cumulative GDD</th>
             <th className={styles.th}>Current Stage</th>
@@ -46,7 +45,6 @@ const Result = () => {
         </thead>
         <tbody className={styles.tbody}>
           <tr>
-          <td className={styles.td}></td>
             <td className={styles.td}>
               {results.crop &&
                 results.crop

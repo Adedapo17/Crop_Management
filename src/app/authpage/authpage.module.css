@@ -15,8 +15,6 @@
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    /* align-items: center; */
     gap: 24px;
     padding: 40px 200px;
     
@@ -65,4 +63,21 @@
   height: 40px;
   font-size: 14px;
   color: #909090;
+}
+
+@media (max-width: 768px) {
+  .signupContainer{
+    width: 540px;
+    padding: 36px 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .signupContainer{
+    width: 320px;
+    padding: 32px;
+    
+  }
+  
+  
 }
