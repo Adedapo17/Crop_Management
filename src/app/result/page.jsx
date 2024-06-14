@@ -45,20 +45,26 @@ const Result = () => {
         </thead>
         <tbody className={styles.tbody}>
           <tr>
-            <td className={styles.td}>
+            <td className={styles.td} data-label="Crop Name">
               {results.crop &&
                 results.crop
                   .toLowerCase()
                   .replace(/\b\w/g, (char) => char.toUpperCase())}
             </td>
-            <td className={styles.td}>{results.cumulative_GDD}</td>
-            <td className={styles.td}>{results.current_stage}</td>
-            <td className={styles.td}>
+            <td className={styles.td} data-label="Cumulative GDD">
+              {results.cumulative_GDD}
+            </td>
+            <td className={styles.td} data-label="Current Stage">
+              {results.current_stage}
+            </td>
+            <td className={styles.td} data-label="Current Stage Range">
               {Array.isArray(results.current_stage_range)
                 ? results.current_stage_range.join(" - ")
                 : ""}
             </td>
-            <td className={styles.td}>{results.next_stage}</td>
+            <td className={styles.td} data-label="Next Stage">
+              {results.next_stage}
+            </td>
           </tr>
         </tbody>
       </table>

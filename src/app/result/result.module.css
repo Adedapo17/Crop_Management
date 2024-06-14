@@ -78,7 +78,50 @@
 
 @media (max-width: 480px) {
   .table {
-    font-size: 13px;
+    font-size: 14px;
+  }
+
+  .table,
+  .thead,
+  .tbody,
+  .tr,
+  .td,
+  .th {
+    display: block;
+    width: 100%;
+  }
+
+  .thead {
+    display: none;
+  }
+
+  .thead,
+  .tbody {
+    margin: 0px;
+  }
+
+  .td,
+  .th {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 4px;
+    position: relative;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .td::before,
+  .th::before {
+    content: attr(data-label);
+    font-weight: bold;
+  }
+
+  .td[data-label]:before,
+  .th[data-label]:before {
+    content: attr(data-label);
+    width: 50%;
+    display: inline-block;
+    font-weight: bold;
   }
 
   .cardContainer {
