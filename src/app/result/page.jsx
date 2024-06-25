@@ -21,6 +21,7 @@ const Result = () => {
       const storedResults = localStorage.getItem("results");
       if (storedResults) {
         setResults(JSON.parse(storedResults));
+        console.log(results.predicted_dates);
       } else {
         console.error("No results found in local storage.");
       }
@@ -71,7 +72,9 @@ const Result = () => {
 
       <h1 className={styles.info}>Predicted Dates</h1>
       <div className={styles.cardContainer}>
+      
         {Object.entries(results.predicted_dates)
+          .sort(([, dateA], [, dateB]) => new Date(dateA) - new Date(dateB)) // Sort based on date value
           .reduce((acc, [stage, date], index) => {
             const groupIndex = Math.floor(index / 2);
             if (!acc[groupIndex]) {
