@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from "react";
 import Topbar from "../components/topbar/Topbar";
 import styles from "./result.module.css";
+import emailjs from "emailjs-com";
+import { useSession } from "next-auth/react";
 
 const Result = () => {
   const [results, setResults] = useState({
@@ -15,6 +17,8 @@ const Result = () => {
     predicted_dates: {},
     agricultural_practices: [],
   });
+
+  const {data} = useSession()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,6 +33,29 @@ const Result = () => {
 
     fetchData();
   }, []);
+
+  const user = data?.user;
+
+  const sendEmail = () => {
+    const templateParams = {
+      crop: results.crop,
+      cumulative_GDD: results.cumulative_GDD,
+      current_stage: results.current_stage,
+      current_stage_range: results.current_stage_range.join(" - "),
+      next_stage: results.next_stage,
+      predicted_dates: JSON.stringify(results.predicted_dates, null, 2),
+      pest_info: results.pest_info.map(pest => `Pest: ${pest.pest}, Symptoms: ${pest.symptoms}, Control Options: ${pest.control_options.join(", ")}`).join("\n"),
+      agricultural_practices: results.agricultural_practices.join(", "),
+      to_email: user?.email // Replace with the recipient's email
+    };
+
+    emailjs.send('service_yw5mv48', 'template_phh76fy', templateParams, '0vwCz0pU59XRF0wx1')
+      .then((response) => {
+        console.log('SUCCESS!', response.status, response.text);
+      }, (error) => {
+        console.error('FAILED...', error);
+      });
+  };
 
   return (
     <div className={styles.container}>
@@ -72,7 +99,6 @@ const Result = () => {
 
       <h1 className={styles.info}>Predicted Dates</h1>
       <div className={styles.cardContainer}>
-      
         {Object.entries(results.predicted_dates)
           .sort(([, dateA], [, dateB]) => new Date(dateA) - new Date(dateB)) // Sort based on date value
           .reduce((acc, [stage, date], index) => {
@@ -117,6 +143,7 @@ const Result = () => {
       <div className={styles.practice}>
         {results.agricultural_practices.join(", ")}
       </div>
+      <button className={styles.emailButton} onClick={sendEmail}>Send Results to Email</button>
     </div>
   );
 };
