@@ -7,7 +7,6 @@ import emailjs from "emailjs-com";
 import { useSession } from "next-auth/react";
 import swal from 'sweetalert';
 
-
 const Result = () => {
   const [results, setResults] = useState({
     crop: "",
@@ -20,7 +19,7 @@ const Result = () => {
     agricultural_practices: [],
   });
 
-  const {data} = useSession()
+  const {data} = useSession();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,9 +52,9 @@ const Result = () => {
 
     emailjs.send('service_yw5mv48', 'template_phh76fy', templateParams, '0vwCz0pU59XRF0wx1')
       .then((response) => {
-        swal("Successfully Sent",response);
+        swal("Successfully Sent!", "Your results have been sent to your email.", "success");
       }, (error) => {
-        swal("Oops!", "Something went wrong!", error);
+        swal("Oops!", "Something went wrong. Please try again later.", "error");
       });
   };
 
