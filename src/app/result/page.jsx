@@ -5,6 +5,8 @@ import Topbar from "../components/topbar/Topbar";
 import styles from "./result.module.css";
 import emailjs from "emailjs-com";
 import { useSession } from "next-auth/react";
+import swal from 'sweetalert';
+
 
 const Result = () => {
   const [results, setResults] = useState({
@@ -51,9 +53,9 @@ const Result = () => {
 
     emailjs.send('service_yw5mv48', 'template_phh76fy', templateParams, '0vwCz0pU59XRF0wx1')
       .then((response) => {
-        console.log('SUCCESS!', response.status, response.text);
+        swal("Successfully Sent",response);
       }, (error) => {
-        console.error('FAILED...', error);
+        swal("Oops!", "Something went wrong!", error);
       });
   };
 
