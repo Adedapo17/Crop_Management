@@ -22,6 +22,11 @@ const Authpage = () => {
     <div className={styles.container}>
       <div className={styles.signupContainer}>
             <h1 className={styles.title}>SIGN UP</h1>
+            <div className={styles.Google}>
+            <FcGoogle size={28} />
+            <button onClick={handleClick} className={styles.signin}>Sign up with Google</button>
+            </div>
+            <p className='text-center font-bold'>OR</p>
             <div className={styles.inputContainer}>
             <label className={styles.label} htmlFor="email">Email</label>
             <input className={styles.input} type="email" name="" id="email" />
@@ -32,11 +37,8 @@ const Authpage = () => {
            </div>
             
             <button className={styles.signup}>SIGN UP</button>
-            <p className='text-center font-bold'>OR</p>
-            <div className={styles.Google}>
-            <FcGoogle size={28} />
-            <button onClick={handleClick} className={styles.signin}>Sign up with Google</button>
-            </div>
+           
+           
            
       </div>
        

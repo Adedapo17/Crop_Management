@@ -4,13 +4,16 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./predict.module.css";
 import Topbar from "../components/topbar/Topbar";
+import FadeLoader from "react-spinners/FadeLoader";
 
 const Predict = () => {
   const [results, setResults] = useState(null);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const startDate = e.target.start_date.value;
     const endDate = e.target.end_date.value;
     const crop = e.target.crops.value;
@@ -31,6 +34,7 @@ const Predict = () => {
     } else {
       console.error("Failed to fetch data:", response.statusText);
     }
+    setLoading(false);
   };
 
   return (
@@ -68,9 +72,20 @@ const Predict = () => {
           />
         </div>
 
-        <button className={styles.submit} type="submit">
-          Calculate
-        </button>
+        {loading ? (
+          <FadeLoader
+            color={"green"}
+            loading={loading}
+            cssOverride={{ display: "block", margin: "0 auto" }}
+            size={150}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        ) : (
+          <button className={styles.submit} type="submit">
+            Calculate
+          </button>
+        )}
       </form>
     </div>
   );
