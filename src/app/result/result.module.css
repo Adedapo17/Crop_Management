@@ -70,6 +70,16 @@
   padding: 20px;
 }
 
+.emailButton{
+  width: 400px;
+  border-radius: 10px;
+  padding: 10px 30px;
+  background-color: #018241;
+  color: #fff;
+  font-size: 18px;
+  margin-top: 25px;
+}
+
 @media (max-width: 768px) {
   .header {
     margin-top: 25px;
