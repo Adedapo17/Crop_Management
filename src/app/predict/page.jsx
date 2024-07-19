@@ -40,7 +40,7 @@ const Predict = () => {
   return (
     <div className={styles.container}>
       <Topbar showSearch={true} />
-      <h2 className={styles.title}>Crop Decision Support System (GDD)</h2>
+      <h2 className={styles.title}>Crop Decision Support System (using Growing Degree Days, GDD)</h2>
 
       <form className={styles.form} onSubmit={handleSubmit}>
         <select className={styles.select} name="crops" id="crops" required>
