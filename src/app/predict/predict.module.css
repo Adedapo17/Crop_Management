@@ -13,6 +13,11 @@
   width: 35%;
   margin: 25px 0;
 }
+
+.titleContainer{
+  display: flex;
+  justify-content: space-between;
+}
 .subtitle {
   padding-left: 300px;
   padding-top: 50px;
@@ -89,6 +94,10 @@
     width: 100%;
     margin: 45px 0px 15px 0px;
     text-align: center;
+  }
+
+  .titleContainer{
+   flex-direction: column;
   }
 
   .select {

@@ -1,0 +1,48 @@
+/* src/components/WeatherWidget.module.css */
+.widgetContainer {
+    padding: 10px 20px;
+    background-color: transparent;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    text-align: center;
+    width: 20%;
+    height: 30%;
+  }
+  
+  .widgetContainer h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .temp{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .max,.min{
+    display: flex;
+    gap: 10px;
+  }
+
+  .location{
+    font-size: 22px;
+    font-weight: bold;
+  }
+  
+  .widgetContainer p {
+    margin: 5px 0;
+    font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    .widgetContainer{
+        width: 50%;
+        margin: auto;
+    }
+  }
+  

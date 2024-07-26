@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import styles from "./predict.module.css";
 import Topbar from "../components/topbar/Topbar";
 import FadeLoader from "react-spinners/FadeLoader";
+import WeatherWidget from "../components/weatherWidget/Weatherwidget";
 
 const Predict = () => {
   const [results, setResults] = useState(null);
@@ -18,18 +19,25 @@ const Predict = () => {
     const endDate = e.target.end_date.value;
     const crop = e.target.crops.value;
 
-    const response = await fetch("https://flask-server-sjfm.onrender.com/predict_gdd", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ start_date: startDate, end_date: endDate, crop }),
-    });
+    const response = await fetch(
+      "https://flask-server-sjfm.onrender.com/predict_gdd",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          start_date: startDate,
+          end_date: endDate,
+          crop,
+        }),
+      }
+    );
 
     if (response.ok) {
       const data = await response.json();
-      setResults(data);  // Set the results state with the received data
-      localStorage.setItem("results", JSON.stringify(data));  // Save the results to local storage
+      setResults(data); // Set the results state with the received data
+      localStorage.setItem("results", JSON.stringify(data)); // Save the results to local storage
       router.push("/result");
     } else {
       console.error("Failed to fetch data:", response.statusText);
@@ -40,7 +48,12 @@ const Predict = () => {
   return (
     <div className={styles.container}>
       <Topbar showSearch={true} />
-      <h2 className={styles.title}>Crop Decision Support System (using Growing Degree Days, GDD)</h2>
+      <div className={styles.titleContainer}>
+        <h2 className={styles.title}>
+          Crop Decision Support System (using Growing Degree Days, GDD)
+        </h2>
+        <WeatherWidget />
+      </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>
         <select className={styles.select} name="crops" id="crops" required>
