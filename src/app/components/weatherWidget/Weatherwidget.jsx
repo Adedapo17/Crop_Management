@@ -5,6 +5,7 @@ import styles from "./weather.module.css";
 import useWeather from "@/app/hooks/useWeather";
 import { FaTemperatureHigh } from "react-icons/fa";
 import { FaTemperatureLow } from "react-icons/fa";
+import { IoIosPartlySunny } from "react-icons/io";
 
 const WeatherWidget = () => {
   const { weather, loading } = useWeather();
@@ -26,23 +27,25 @@ const WeatherWidget = () => {
 
   return (
     <div className={styles.widgetContainer}>
-      <h3> {weather.current?.temperature_2m}°C</h3>
-    <div className={styles.temp}>
-      <div className={styles.max}>
+      <div className={styles.widgetIcon}>
         <span>
-          <FaTemperatureHigh size={24} />
+          <IoIosPartlySunny size={28} />
         </span>
-        <p>
-                {current_weather.temperature_2m_max}°C
-        </p>
-         
+        <h3> {weather.current?.temperature_2m}°C</h3>
       </div>
-      <div className={styles.min}>
-        <FaTemperatureLow size={24} />
-        <p>{current_weather.temperature_2m_min}°C</p> 
+      <div className={styles.temp}>
+        <div className={styles.max}>
+          <span>
+            <FaTemperatureHigh size={24} />
+          </span>
+          <p>{current_weather.temperature_2m_max}°C</p>
+        </div>
+        <div className={styles.min}>
+          <FaTemperatureLow size={24} />
+          <p>{current_weather.temperature_2m_min}°C</p>
+        </div>
       </div>
-      </div>
-      
+
       <h2 className={styles.location}>Ilorin</h2>
     </div>
   );
