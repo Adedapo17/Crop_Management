@@ -17,6 +17,10 @@
   font-weight: bold;
 }
 
+.widgetIcon span {
+  color: #f7d966;
+}
+
 .temp {
   display: flex;
   justify-content: space-between;

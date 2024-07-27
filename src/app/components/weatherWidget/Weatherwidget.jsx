@@ -5,7 +5,7 @@ import styles from "./weather.module.css";
 import useWeather from "@/app/hooks/useWeather";
 import { FaTemperatureHigh } from "react-icons/fa";
 import { FaTemperatureLow } from "react-icons/fa";
-import { IoIosPartlySunny } from "react-icons/io";
+import { MdWbSunny } from "react-icons/md";
 
 const WeatherWidget = () => {
   const { weather, loading } = useWeather();
@@ -29,7 +29,7 @@ const WeatherWidget = () => {
     <div className={styles.widgetContainer}>
       <div className={styles.widgetIcon}>
         <span>
-          <IoIosPartlySunny size={28} />
+        <MdWbSunny size={24}/>
         </span>
         <h3> {weather.current?.temperature_2m}°C</h3>
       </div>
