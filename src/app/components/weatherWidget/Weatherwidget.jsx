@@ -29,7 +29,7 @@ const WeatherWidget = () => {
     <div className={styles.widgetContainer}>
       <div className={styles.widgetIcon}>
         <span>
-        <MdWbSunny size={24}/>
+        <MdWbSunny size={36}/>
         </span>
         <h3> {weather.current?.temperature_2m}°C</h3>
       </div>

@@ -19,6 +19,7 @@
 
 .widgetIcon span {
   color: #f7d966;
+  margin-bottom: 10px;
 }
 
 .temp {
@@ -30,7 +31,7 @@
 
 .widgetIcon {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   align-self: center;
   justify-content: center;
 }
