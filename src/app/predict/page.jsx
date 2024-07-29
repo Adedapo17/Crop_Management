@@ -18,6 +18,9 @@ const Predict = () => {
     const startDate = e.target.start_date.value;
     const endDate = e.target.end_date.value;
     const crop = e.target.crops.value;
+    const latitude = e.target.latitude.value;
+    const longitude = e.target.longitude.value;
+    
 
     const response = await fetch(
       "https://flask-server-sjfm.onrender.com/predict_gdd",
@@ -30,6 +33,8 @@ const Predict = () => {
           start_date: startDate,
           end_date: endDate,
           crop,
+          longitude,
+          latitude
         }),
       }
     );
@@ -68,16 +73,18 @@ const Predict = () => {
         <label className={styles.label}>Latitude:</label>
         <input
             className={styles.date}
-            type="number"
+            type="text"
             name="latitude"
             placeholder="Enter the Latitude"
+            pattern="[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?)"
             required
           />
            <label className={styles.label}>Longitude:</label>
           <input
             className={styles.date}
-            type="number"
+            type="text"
             name="longitude"
+            pattern="[-+]?((1[0-7]\d)|[1-9]\d?)(\.\d+)?"
             placeholder="Enter the Longitude"
             required
           />
