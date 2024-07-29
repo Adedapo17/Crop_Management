@@ -5,7 +5,7 @@ import Topbar from "../components/topbar/Topbar";
 import styles from "./result.module.css";
 import emailjs from "emailjs-com";
 import { useSession } from "next-auth/react";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 
 const Result = () => {
   const [results, setResults] = useState({
@@ -16,10 +16,11 @@ const Result = () => {
     next_stage: "",
     pest_info: [],
     predicted_dates: {},
+    water_requirements_per_hectare: "",
     agricultural_practices: [],
   });
 
-  const {data} = useSession();
+  const { data } = useSession();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,17 +46,41 @@ const Result = () => {
       current_stage_range: results.current_stage_range.join(" - "),
       next_stage: results.next_stage,
       predicted_dates: JSON.stringify(results.predicted_dates, null, 2),
-      pest_info: results.pest_info.map(pest => `Pest: ${pest.pest}, Symptoms: ${pest.symptoms}, Control Options: ${pest.control_options.join(", ")}`).join("\n"),
+      pest_info: results.pest_info
+        .map(
+          (pest) =>
+            `Pest: ${pest.pest}, Symptoms: ${
+              pest.symptoms
+            }, Control Options: ${pest.control_options.join(", ")}`
+        )
+        .join("\n"),
       agricultural_practices: results.agricultural_practices.join(", "),
-      to_email: user?.email // Replace with the recipient's email
+      to_email: user?.email, // Replace with the recipient's email
     };
 
-    emailjs.send('service_yw5mv48', 'template_phh76fy', templateParams, '0vwCz0pU59XRF0wx1')
-      .then((response) => {
-        swal("Successfully Sent!", "Your results have been sent to your email.", "success");
-      }, (error) => {
-        swal("Oops!", "Something went wrong. Please try again later.", "error");
-      });
+    emailjs
+      .send(
+        "service_yw5mv48",
+        "template_phh76fy",
+        templateParams,
+        "0vwCz0pU59XRF0wx1"
+      )
+      .then(
+        (response) => {
+          swal(
+            "Successfully Sent!",
+            "Your results have been sent to your email.",
+            "success"
+          );
+        },
+        (error) => {
+          swal(
+            "Oops!",
+            "Something went wrong. Please try again later.",
+            "error"
+          );
+        }
+      );
   };
 
   return (
@@ -122,7 +147,13 @@ const Result = () => {
             </div>
           ))}
       </div>
-
+      <h1 className={styles.info}>Water Requirements</h1>
+      <div className={styles.practice}>
+        {Array.isArray(results.water_requirement_per_hectare)
+          ? results.water_requirement_per_hectare.join(" - ")
+          : "No data available"}{" "}
+        (litres/hectare)
+      </div>
       <h1 className={styles.info}>Pest Information</h1>
       <div>
         {results.pest_info.map((pest, index) => (
@@ -144,7 +175,9 @@ const Result = () => {
       <div className={styles.practice}>
         {results.agricultural_practices.join(", ")}
       </div>
-      <button className={styles.emailButton} onClick={sendEmail}>Send Results to Email</button>
+      <button className={styles.emailButton} onClick={sendEmail}>
+        Send Results to Email
+      </button>
     </div>
   );
 };

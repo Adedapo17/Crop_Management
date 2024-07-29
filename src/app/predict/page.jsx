@@ -65,6 +65,22 @@ const Predict = () => {
           <option value="millet">Millet</option>
         </select>
         <div className={styles.dateContainer}>
+        <label className={styles.label}>Latitude:</label>
+        <input
+            className={styles.date}
+            type="number"
+            name="latitude"
+            placeholder="Enter the Latitude"
+            required
+          />
+           <label className={styles.label}>Longitude:</label>
+          <input
+            className={styles.date}
+            type="number"
+            name="longitude"
+            placeholder="Enter the Longitude"
+            required
+          />
           <label className={styles.label}>
             Start Date: <span>(YOUR PLANTING DATE)</span>
           </label>

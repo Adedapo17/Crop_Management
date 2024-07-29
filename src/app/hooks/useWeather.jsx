@@ -10,7 +10,7 @@ const useWeather = () => {
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=8.439994&longitude=4.494&current=temperature_2m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=1');
+        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=8.439994&longitude=4.494&current=temperature_2m,is_day&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=1');
         const data = await response.json();
         setWeather(data);
       } catch (error) {
