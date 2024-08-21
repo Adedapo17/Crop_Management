@@ -1,0 +1,61 @@
+.container {
+    background-image: url("../../../public/farmland.jpg");
+    padding: 24px 32px;
+    /* height: 100vh; */
+    background-size: cover;
+    background-position: center;
+  }
+
+  .title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #018241;
+    font-weight: bold;
+  }
+  .gddValue{
+    width: 30%;
+    background-color: white;
+    padding: 10px 15px;
+  }
+
+  .gdd{
+    color: #018241;
+    font-size: 22px;
+  }
+
+  
+  
+  .graph {
+    margin-top: 20px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  @media (max-width:768px) {
+    .container{
+      height: 100vh;
+    }
+    .gddValue{
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 480px){
+    .container{
+      height: 100vh;
+    }
+    .gddValue{
+      width: 100%;
+      background-color: white;
+      padding: 5px 10px;
+    }
+    .gdd{
+      color: #018241;
+      font-size: 18px;
+    }
+
+    .graph{
+      margin-top: 45px ;
+    }
+  }
+  

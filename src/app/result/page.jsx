@@ -27,7 +27,7 @@ const Result = () => {
       const storedResults = localStorage.getItem("results");
       if (storedResults) {
         setResults(JSON.parse(storedResults));
-        console.log(results.predicted_dates);
+        console.log(results);
       } else {
         console.error("No results found in local storage.");
       }
@@ -85,7 +85,7 @@ const Result = () => {
 
   return (
     <div className={styles.container}>
-      <Topbar showSearch={false} />
+      <Topbar showSearch={false} showLinks={false} showMenu={false} />
       <h1 className={styles.header}>Result</h1>
       <table className={styles.table}>
         <thead className={styles.thead}>

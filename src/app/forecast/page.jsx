@@ -3,12 +3,12 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-import styles from "./predict.module.css";
+import styles from "./forcast.module.css";
 import Topbar from "../components/topbar/Topbar";
 import FadeLoader from "react-spinners/FadeLoader";
 import WeatherWidget from "../components/weatherWidget/Weatherwidget";
 
-const Predict = () => {
+const Forecast = () => {
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
@@ -16,21 +16,19 @@ const Predict = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    const startDate = e.target.start_date.value;
-    const endDate = e.target.end_date.value;
-    const crop = e.target.crops.value;
+    const futureStartDate = e.target.future_start_date.value;
+    const futureEndDate = e.target.future_end_date.value;
 
     const response = await fetch(
-      "https://flask-server-sjfm.onrender.com/predict_gdd",
+      "https://flask-server-sjfm.onrender.com//predict_future_gdd",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          start_date: startDate,
-          end_date: endDate,
-          crop,
+          start_date: futureStartDate,
+          end_date: futureEndDate,
         }),
       }
     );
@@ -38,8 +36,9 @@ const Predict = () => {
     if (response.ok) {
       const data = await response.json();
       setResults(data); // Set the results state with the received data
-      localStorage.setItem("results", JSON.stringify(data)); // Save the results to local storage
-      router.push("/result");
+      localStorage.setItem("result", JSON.stringify(data)); // Save the results to local storage
+      console.log(results)
+      router.push("/graph");
     } else {
       console.error("Failed to fetch data:", response.statusText);
     }
@@ -57,22 +56,12 @@ const Predict = () => {
       </div>
 
       <form className={styles.form} onSubmit={handleSubmit}>
-        <select className={styles.select} name="crops" id="crops" required>
-          <option value="none">Choose your crop</option>
-          <option value="maize">Maize</option>
-          <option value="rice">Rice</option>
-          <option value="tomato">Tomato</option>
-          <option value="beans">Beans</option>
-          <option value="millet">Millet</option>
-        </select>
         <div className={styles.dateContainer}>
-          <label className={styles.label}>
-            Start Date: <span>(YOUR PLANTING DATE)</span>
-          </label>
+          <label className={styles.label}>Start Date:</label>
           <input
             className={styles.date}
             type="date"
-            name="start_date"
+            name="future_start_date"
             placeholder="start date"
             required
           />
@@ -80,7 +69,7 @@ const Predict = () => {
           <input
             className={styles.date}
             type="date"
-            name="end_date"
+            name="future_end_date"
             placeholder="end date"
             required
           />
@@ -97,7 +86,7 @@ const Predict = () => {
           />
         ) : (
           <button className={styles.submit} type="submit">
-            Calculate
+            Predict
           </button>
         )}
       </form>
@@ -105,4 +94,4 @@ const Predict = () => {
   );
 };
 
-export default Predict;
+export default Forecast;
