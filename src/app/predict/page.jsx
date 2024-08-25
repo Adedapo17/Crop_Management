@@ -48,7 +48,7 @@ const Predict = () => {
 
   return (
     <div className={styles.container}>
-      <Topbar showSearch={true} showLinks={true} showMenu={true} />
+      <Topbar showSearch={true} />
       <div className={styles.titleContainer}>
         <h2 className={styles.title}>
           Crop Decision Support System (using Growing Degree Days, GDD)

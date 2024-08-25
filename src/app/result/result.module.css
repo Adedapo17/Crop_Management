@@ -70,7 +70,7 @@
   padding: 20px;
 }
 
-.emailButton{
+.emailButton {
   width: 320px;
   border-radius: 10px;
   padding: 10px 30px;
@@ -81,12 +81,15 @@
 }
 
 @media (max-width: 768px) {
-  .container{
-    height: 100vh;
-  }
   .header {
     margin-top: 25px;
   }
+
+  .cardContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  } 
 }
 
 @media (max-width: 480px) {

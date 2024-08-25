@@ -3,22 +3,16 @@ import styles from "./topbar.module.css";
 import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
 import { FaArrowLeft } from "react-icons/fa";
-import { GiHamburgerMenu } from "react-icons/gi";
 import Link from "next/link";
 import { useState } from "react";
 
-const Topbar = ({ showSearch,showLinks,showMenu }) => {
+const Topbar = ({ showSearch }) => {
   const { data } = useSession();
   const [dropdownVisible, setDropdownVisible] = useState(false);
-  const [dropdownLinkVisible,setDropdownLinkVisible ] = useState(false)
 
   const handleProfileClick = () => {
     setDropdownVisible(!dropdownVisible);
   };
-
-  const handleLinkClick = ()=>{
-    setDropdownLinkVisible(!dropdownLinkVisible)
-  }
 
   const handleLogout = () => {
     signOut();
@@ -27,26 +21,6 @@ const Topbar = ({ showSearch,showLinks,showMenu }) => {
 
   return (
     <div className={styles.searchfield}>
-
-      {showMenu ? ( <div  className={styles.hamburger}>
-      <GiHamburgerMenu  onClick={handleLinkClick} size={25}/>
-      {dropdownLinkVisible && (
-            <div className={styles.dropdownLinkMenu}>
-              <div className={styles.linkDiv}>
-              <Link href="/predict">
-        Predict
-        </Link>
-        <Link   href="/forecast">
-        Forecast
-        </Link>
-              </div>
-            </div>
-          )}
-      </div>) : null}
-
-     
-      
-      
       {showSearch ? (
         <div className={styles.search}>
           <AiOutlineSearch size={18} />
@@ -59,18 +33,6 @@ const Topbar = ({ showSearch,showLinks,showMenu }) => {
           </Link>
         </div>
       )}
-     {
-      showLinks ?(
-        <div className={styles.link}>
-        <Link className={styles.links} href="/predict">
-        Predict
-        </Link>
-        <Link className={styles.links}  href="/forecast">
-        Forecast
-        </Link>
-      </div>
-      ) : null
-     }
 
       <div className={styles.profileDiv}>
         <h3 className={styles.welcome}> Welcome, {user?.name}</h3>

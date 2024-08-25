@@ -15,8 +15,8 @@ const Result = () => {
     current_stage_range: [],
     next_stage: "",
     pest_info: [],
-    predicted_dates: {},
-    water_requirements_per_hectare: "",
+    predicted_stages: {}, // Change this to an object to match the backend response
+    water_requirement_per_hectare: "",
     agricultural_practices: [],
   });
 
@@ -25,9 +25,10 @@ const Result = () => {
   useEffect(() => {
     const fetchData = async () => {
       const storedResults = localStorage.getItem("results");
+      console.log(storedResults);
+
       if (storedResults) {
         setResults(JSON.parse(storedResults));
-        console.log(results);
       } else {
         console.error("No results found in local storage.");
       }
@@ -45,13 +46,13 @@ const Result = () => {
       current_stage: results.current_stage,
       current_stage_range: results.current_stage_range.join(" - "),
       next_stage: results.next_stage,
-      predicted_dates: JSON.stringify(results.predicted_dates, null, 2),
+      predicted_stages: Object.entries(results.predicted_stages)
+        .map(([stage, date]) => `${stage}: ${date}`)
+        .join("\n"),
       pest_info: results.pest_info
         .map(
           (pest) =>
-            `Pest: ${pest.pest}, Symptoms: ${
-              pest.symptoms
-            }, Control Options: ${pest.control_options.join(", ")}`
+            `Pest: ${pest.name}, Symptoms: ${pest.symptoms}, Control Options: ${pest.control_options.join(", ")}`
         )
         .join("\n"),
       agricultural_practices: results.agricultural_practices.join(", "),
@@ -85,7 +86,7 @@ const Result = () => {
 
   return (
     <div className={styles.container}>
-      <Topbar showSearch={false} showLinks={false} showMenu={false} />
+      <Topbar showSearch={false} />
       <h1 className={styles.header}>Result</h1>
       <table className={styles.table}>
         <thead className={styles.thead}>
@@ -125,8 +126,8 @@ const Result = () => {
 
       <h1 className={styles.info}>Predicted Dates</h1>
       <div className={styles.cardContainer}>
-        {Object.entries(results.predicted_dates)
-          .sort(([, dateA], [, dateB]) => new Date(dateA) - new Date(dateB)) // Sort based on date value
+        {Object.entries(results.predicted_stages)
+        .sort(([, dateA], [, dateB]) => new Date(dateA) - new Date(dateB)) // Sort based on date value
           .reduce((acc, [stage, date], index) => {
             const groupIndex = Math.floor(index / 2);
             if (!acc[groupIndex]) {
@@ -147,13 +148,14 @@ const Result = () => {
             </div>
           ))}
       </div>
+
       <h1 className={styles.info}>Water Requirements</h1>
       <div className={styles.practice}>
-        {Array.isArray(results.water_requirement_per_hectare)
-          ? results.water_requirement_per_hectare.join(" - ")
-          : "No data available"}{" "}
-        (litres/hectare)
+        {results.water_requirement_per_hectare
+          ? `${results.water_requirement_per_hectare} litres/hectare`
+          : "No data available"}
       </div>
+
       <h1 className={styles.info}>Pest Information</h1>
       <div>
         {results.pest_info.map((pest, index) => (
@@ -171,9 +173,12 @@ const Result = () => {
           </div>
         ))}
       </div>
+
       <h1 className={styles.info}>Agricultural Practices</h1>
       <div className={styles.practice}>
-        {results.agricultural_practices.join(", ")}
+        {results.agricultural_practices.length > 0
+          ? results.agricultural_practices.join(", ")
+          : "No data available"}
       </div>
       <button className={styles.emailButton} onClick={sendEmail}>
         Send Results to Email
