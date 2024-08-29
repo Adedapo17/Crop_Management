@@ -152,7 +152,7 @@ const Result = () => {
       <h1 className={styles.info}>Water Requirements</h1>
       <div className={styles.practice}>
         {results.water_requirement_per_hectare
-          ? `${results.water_requirement_per_hectare} litres/hectare`
+          ? `${results.water_requirement_per_hectare.join(" - ")} litres/hectare`
           : "No data available"}
       </div>
 
