@@ -15,9 +15,10 @@ const Result = () => {
     current_stage_range: [],
     next_stage: "",
     pest_info: [],
-    predicted_stages: {}, // Change this to an object to match the backend response
+    predicted_stages: {}, // Changed to object to match the backend response
     water_requirement_per_hectare: "",
     agricultural_practices: [],
+    plot_path: "", // Add plot_path to the state to store the image URL
   });
 
   const { data } = useSession();
@@ -127,7 +128,7 @@ const Result = () => {
       <h1 className={styles.info}>Predicted Dates</h1>
       <div className={styles.cardContainer}>
         {Object.entries(results.predicted_stages)
-        .sort(([, dateA], [, dateB]) => new Date(dateA) - new Date(dateB)) // Sort based on date value
+          .sort(([, dateA], [, dateB]) => new Date(dateA) - new Date(dateB)) // Sort based on date value
           .reduce((acc, [stage, date], index) => {
             const groupIndex = Math.floor(index / 2);
             if (!acc[groupIndex]) {
@@ -152,7 +153,9 @@ const Result = () => {
       <h1 className={styles.info}>Water Requirements</h1>
       <div className={styles.practice}>
         {results.water_requirement_per_hectare
-          ? `${results.water_requirement_per_hectare.join(" - ")} litres/hectare`
+          ? `${results.water_requirement_per_hectare.join(
+              " - "
+            )} litres/hectare`
           : "No data available"}
       </div>
 
@@ -180,6 +183,21 @@ const Result = () => {
           ? results.agricultural_practices.join(", ")
           : "No data available"}
       </div>
+
+      {/* Display the GDD Plot */}
+      <h1 className={styles.info}>GDD Plot</h1>
+      {results.plot_path ? (
+        <div className={styles.plotContainer}>
+          <img
+            src={`https://flask-server-sjfm.onrender.com/${results.plot_path}`}
+            alt="GDD Plot"
+            className={styles.plotImage}
+          />
+        </div>
+      ) : (
+        <p>No plot available</p>
+      )}
+
       <button className={styles.emailButton} onClick={sendEmail}>
         Send Results to Email
       </button>
